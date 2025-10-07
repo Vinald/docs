@@ -1,3 +1,58 @@
+name: Build and Publish MkDocs site to main/docs
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check deployment mode (skip if USE_GHPAGES=true)
+        id: check-mode
+        run: |
+          if [ "${{ secrets.USE_GHPAGES }}" = "true" ]; then
+            echo "Skipping main/docs publish because USE_GHPAGES=true";
+            exit 0;
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate site sources
+        run: python tools/generate_site.py
+
+      - name: Build site
+        run: mkdocs build -d site
+
+      - name: Publish to main/docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          rm -rf docs || true
+          mkdir -p docs
+          cp -r site/* docs/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git diff --staged --quiet || git commit -m "chore(site): publish site to docs/ [skip ci]"
+          git push origin HEAD:main
 name: Build and Deploy MkDocs site
 
 on:
