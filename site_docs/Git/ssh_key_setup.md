@@ -1,0 +1,14 @@
+# ssh_key_setup
+
+```
+ls -al ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "okiror1vinald@gmail.com"
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+#create ssh key on the github
+ssh -T git@github.com
+git config --global user.name "[vinald]"
+git config --global user.email "okiror1vinald@gmail.com"
+git clone git@github.com:username/repository.git
+```
