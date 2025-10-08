@@ -7,7 +7,7 @@ nav:
           - Git: Git/index.md
           - Linux: Linux/index.md
           - Python: Python/index.md
-          - SSH: SSH/index.md
+          - ssh: ssh/index.md
           - VSCode: VSCode/index.md
           - Database: Database/index.md
 theme:
