@@ -18,7 +18,7 @@
     
     
       
-        <title>ssh_key_setup - Docs Website</title>
+        <title>setup_postgres_db_in_docker - Docs Website</title>
       
     
     
@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ssh_key_setup" class="md-skip">
+        <a href="#setup_postgres_db_in_docker" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ssh_key_setup
+              setup_postgres_db_in_docker
             
           </span>
         </div>
@@ -252,7 +252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Docker/index.md" class="md-nav__link">
+      <a href="../../Docker/" class="md-nav__link">
         
   
   
@@ -298,7 +298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Linux/index.md" class="md-nav__link">
+      <a href="../../Linux/" class="md-nav__link">
         
   
   
@@ -390,7 +390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Database/index.md" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -447,17 +447,95 @@
 
 
 
-<h1 id="ssh_key_setup">ssh_key_setup</h1>
-<pre><code>ls -al ~/.ssh
-ssh-keygen -t rsa -b 4096 -C &quot;okiror1vinald@gmail.com&quot;
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa.pub
-#create ssh key on the github
-ssh -T git@github.com
-git config --global user.name &quot;[vinald]&quot;
-git config --global user.email &quot;okiror1vinald@gmail.com&quot;
-git clone git@github.com:username/repository.git
+<h1 id="setup_postgres_db_in_docker">setup_postgres_db_in_docker</h1>
+<pre><code>STEP 1: CREATE THE CONTAINER
+
+docker run --name bookly_db \
+  -e POSTGRES_USER=samuel \
+  -e POSTGRES_PASSWORD=8446vinald \
+  -e POSTGRES_DB=booklydb \
+  -v demo_pg_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  -d postgres
+
+
+==============================================================================
+What this does:
+    •   Container name: bookly_db
+    •   Database name: booklydb
+    •   Username: samuel
+    •   Password: 8446vinald
+    •   Port mapping: Makes Postgres accessible on your local port 5432
+    •   Volume: demo_pg_data ensures your data persists even if the container stops or is removed.
+==============================================================================
+
+
+
+STEP 2: CHECK THAT THE CONTAINER IS RUNNING
+
+docker ps
+
+
+==============================================================================
+
+
+STEP 3: CONNECT TO THE DATABASE INSIDE THE CONTAINER
+
+docker exec -it bookly_db psql -U samuel -d booklydb
+
+
+==============================================================================
+
+
+STEP 3: CONNECT TO THE CONTAINER TO APP/GUI
+Use these connection details:
+    •   Host: localhost
+    •   Port: 5432
+    •   Database: booklydb
+    •   Username: samuel
+    •   Password: 8446vinald
+
+==============================================================================
+
+
+INSPECT CONTAINER LOGS
+docker logs bookly_db
+
+
+==============================================================================
+
+
+APP CONNECTION STRING
+
+Python
+postgresql://samuel:8446vinald@localhost:5432/booklydb
+
+
+==============================================================================
+
+
+ENVIRONMENT VARIABLE
+DATABASE_URL=postgresql://samuel:8446vinald@localhost:5432/booklydb
+
+
+SUMMARY
+Action
+Command / Detail
+Run container
+Docker run --name bookly_db ... (already done)
+Connect inside container
+docker exec -it bookly_db psql -U samuel -d booklydb
+Connect from GUI/app
+Host=localhost, Port=5432, DB=booklydb, User=samuel, Password=8446vinald
+Check logs
+docker logs bookly_db
+Connection string
+postgresql://Samuel:8446vinald@localhost:5432/booklydb
+
+
+
+
+
 </code></pre>
 
 
