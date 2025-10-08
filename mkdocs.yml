@@ -3,12 +3,13 @@ site_description: Personal document collection hosted on GitHub Pages
 nav:
     - Home: index.md
     - Files:
-          - Dockers: Dockers/index.md
-          - git: git/index.md
-          - linux-setup: linux-setup/index.md
-          - python: python/index.md
-          - ssh: ssh/index.md
-          - vscode: vscode/index.md
+          - Docker: Docker/index.md
+          - Git: Git/index.md
+          - Linux: Linux/index.md
+          - Python: Python/index.md
+          - SSH: SSH/index.md
+          - VSCode: VSCode/index.md
+          - Database: Database/index.md
 theme:
     name: material
 docs_dir: site_docs

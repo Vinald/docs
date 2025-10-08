@@ -1,0 +1,87 @@
+STEP 1: CREATE THE CONTAINER
+
+docker run --name bookly_db \
+  -e POSTGRES_USER=samuel \
+  -e POSTGRES_PASSWORD=8446vinald \
+  -e POSTGRES_DB=booklydb \
+  -v demo_pg_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  -d postgres
+
+
+==============================================================================
+What this does:
+	•	Container name: bookly_db
+	•	Database name: booklydb
+	•	Username: samuel
+	•	Password: 8446vinald
+	•	Port mapping: Makes Postgres accessible on your local port 5432
+	•	Volume: demo_pg_data ensures your data persists even if the container stops or is removed.
+==============================================================================
+
+
+
+STEP 2: CHECK THAT THE CONTAINER IS RUNNING
+
+docker ps
+
+
+==============================================================================
+
+
+STEP 3: CONNECT TO THE DATABASE INSIDE THE CONTAINER
+
+docker exec -it bookly_db psql -U samuel -d booklydb
+
+
+==============================================================================
+
+
+STEP 3: CONNECT TO THE CONTAINER TO APP/GUI
+Use these connection details:
+	•	Host: localhost
+	•	Port: 5432
+	•	Database: booklydb
+	•	Username: samuel
+	•	Password: 8446vinald
+
+==============================================================================
+
+
+INSPECT CONTAINER LOGS
+docker logs bookly_db
+
+
+==============================================================================
+
+
+APP CONNECTION STRING
+
+Python
+postgresql://samuel:8446vinald@localhost:5432/booklydb
+
+
+==============================================================================
+
+
+ENVIRONMENT VARIABLE
+DATABASE_URL=postgresql://samuel:8446vinald@localhost:5432/booklydb
+
+
+SUMMARY
+Action
+Command / Detail
+Run container
+Docker run --name bookly_db ... (already done)
+Connect inside container
+docker exec -it bookly_db psql -U samuel -d booklydb
+Connect from GUI/app
+Host=localhost, Port=5432, DB=booklydb, User=samuel, Password=8446vinald
+Check logs
+docker logs bookly_db
+Connection string
+postgresql://Samuel:8446vinald@localhost:5432/booklydb
+
+
+
+
