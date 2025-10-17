@@ -1,0 +1,59 @@
+# packages
+
+```
+Packages
+-------------------------------------------------------------
+pip install pipreqs
+pip install mlflow
+pip install gunicorn
+pip install requests
+pip install matplotlib
+pip install seaborn
+pip install nbconvert
+pip install scipy
+pip install python-multipart
+pip install aiomysql
+pip install plotly
+pip install numpy
+pip install mysql-connector
+pip install pillow
+pip install jupyter 
+pip install notebook
+pip install jupyterlab
+pip install psycopg2
+pip install virtualenv
+pip install pdf2docx
+pip install django
+pip install scikit-learn 
+pip install pandas
+pip install flask
+pip install httpcore 
+pip install httpx
+pip install h5py 
+pip install pyaudio
+pip install pytesseract pdf2image python-docx
+pip install python-decouple 
+pip install django-cors-headers
+pip install pytest-django
+pip install coverage
+pip install channels
+pip install pymysql
+pip install whitenoise
+pip install django-crispy-forms
+pip install django-debug-toolbar
+pip install djangorestframework
+pip install mysqlclient
+pip install openpyxl
+pip install assemblyai
+pip install pandas_gbq
+pip install html5lib     
+pip install tensorflow
+pip install lxml   
+pip install tensorflow_hub
+pip install -U sentence-transformers
+pip install opencv-python
+pip install torch 
+pip install torchvision 
+pip install torchaudio
+
+```
