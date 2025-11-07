@@ -1,15 +1,14 @@
-site_name: Docs Website
-site_description: Personal document collection hosted on GitHub Pages
+site_name: Vinald Documentation
+site_description: Personal document collection
 nav:
     - Home: index.md
-    - Files:
-          - Docker: Docker/index.md
-          - Git: Git/index.md
-          - Linux: Linux/index.md
-          - Python: Python/index.md
-          - ssh: ssh/index.md
-          - VSCode: VSCode/index.md
-          - Database: Database/index.md
+    - Docker: Docker/index.md
+    - Git: Git/index.md
+    - Linux: Linux/index.md
+    - Python: Python/index.md
+    - ssh: ssh/index.md
+    - VSCode: VSCode/index.md
+    - Database: Database/index.md
 theme:
     name: material
 docs_dir: site_docs
