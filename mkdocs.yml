@@ -25,6 +25,8 @@ theme:
 nav:
   - Home: index.md
   - Git: git/commands.md
+  - Python: Python/creating_virtual_environment.md
+  - Python: Python/packages.md
 
 plugins:
   - search

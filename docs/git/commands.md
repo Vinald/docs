@@ -1,3 +1,6 @@
+# commands
+
+```
 git add .
 git commit -m "Your commit message here"
 git push origin branch_name
@@ -13,3 +16,4 @@ git reset --hard HEAD~1
 git push --force
 git config pull.rebase false
 git config pull.rebase true
+```
