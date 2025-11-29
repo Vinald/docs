@@ -24,9 +24,9 @@ theme:
 nav:
   - Home: index.md
   - Git:
-      - Commands: Git/commands.md
-      - gitIgnore: Git/gitIgnore.md
-      - SSH Key Setup: Git/ssh_key_setup.md
+      - Commands: git/commands.md
+      - gitIgnore: git/gitIgnore.md
+      - SSH Key Setup: git/ssh_key_setup.md
   - Python:
       - Creating Virtual Environment: Python/creating_virtual_environment.md
       - Packages: Python/packages.md
