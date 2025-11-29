@@ -1,90 +1,27 @@
-name: Build and Publish MkDocs site to main/docs
+name: Deploy MkDocs Site
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build-and-publish:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Check deployment mode (skip if USE_GHPAGES=true)
-        id: check-mode
-        run: |
-          if [ "${{ secrets.USE_GHPAGES }}" = "true" ]; then
-            echo "Skipping main/docs publish because USE_GHPAGES=true";
-            exit 0;
-          fi
 
-      - name: Checkout
+    steps:
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: true
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: 3.x
 
-      - name: Install dependencies
+      - name: Install MkDocs + Material
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install mkdocs-material
 
-      - name: Generate site sources
-        run: python tools/generate_site.py
-
-      - name: Build site
-        run: mkdocs build -d site
-
-      - name: Publish to main/docs
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to GitHub Pages
         run: |
-          rm -rf docs || true
-          mkdir -p docs
-          cp -r site/* docs/
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs
-          git diff --staged --quiet || git commit -m "chore(site): publish site to docs/ [skip ci]"
-          git push origin HEAD:main
-name: Build and Deploy MkDocs site
-
-on:
-    push:
-        branches: [main]
-
-jobs:
-    build-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Set up Python
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.x"
-
-            - name: Install dependencies
-              run: |
-                  python -m pip install --upgrade pip
-                  pip install -r requirements.txt
-
-            - name: Generate site sources
-              run: python tools/generate_site.py
-
-            - name: Build site
-              run: mkdocs build -d site
-
-            - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v4
-              with:
-                  publish_dir: ./site
-                  publish_branch: gh-pages
-                  keep_files: false
+          mkdocs gh-deploy --force
