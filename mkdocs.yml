@@ -23,9 +23,28 @@ theme:
 
 nav:
   - Home: index.md
-  - Git: git/commands.md
-  - Python: Python/creating_virtual_environment.md
-  - Python: Python/packages.md
+  - Git:
+      - Commands: git/commands.md
+      - gitIgnore: git/gitIgnore.md
+      - SSH Key Setup: git/ssh_key_setup.md
+  - Python:
+      - Creating Virtual Environment: Python/creating_virtual_environment.md
+      - Packages: Python/packages.md
+  - Docker:
+      - Index: Docker/index.md
+      - Images: Docker/images.md
+  - Database:
+      - Index: Database/index.md
+      - Setup Postgres: Database/setup_postgres_db_in_docker.md
+  - Linux:
+      - Index: Linux/index.md
+      - Packages: Linux/packages.md
+  - VSCode:
+      - Index: VSCode/index.md
+      - Extensions: VSCode/extensions.md
+  - SSH:
+      - Index: ssh/index.md
+      - Doc: ssh/doc.md
 
 plugins:
   - search
@@ -38,5 +57,3 @@ markdown_extensions:
   - footnotes
   - tables
   - abbr
-
-
