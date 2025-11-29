@@ -1,6 +1,5 @@
 site_name: Vinald's Docs
 site_description: Personal documentation collection 
-site_url: https://vinald.github.io/docs/
 
 theme:
   name: material
